@@ -420,6 +420,62 @@ namespace Lab2
         }
         #endregion
 
+    
+
+        static void f8()
+        {
+            double epsilon = 0.0000001; // Точність
+
+            // Діапазон від -2 до 0
+            double rootInRangeNegative = FindRootInRange(-2, 0, epsilon);
+            Console.WriteLine($"Корінь рівняння у діапазоні від -2 до 0: {rootInRangeNegative}");
+            Console.WriteLine($"Підставивиши корінь в рівняння: {Function(rootInRangeNegative)}");
+
+            // Діапазон від 0 до 2
+            double rootInRangePositive = FindRootInRange(0, 2, epsilon);
+            Console.WriteLine($"Корінь рівняння у діапазоні від 0 до 2: {rootInRangePositive}");
+            Console.WriteLine($"Підставивиши корінь в рівняння: {Function(rootInRangePositive)}");
+
+            // Діапазон від 3 до 4
+            double rootInRangeAnother = FindRootInRange(3, 4, epsilon);
+            Console.WriteLine($"Корінь рівняння у діапазоні від 3 до 4: {rootInRangeAnother}");
+            Console.WriteLine($"Підставивиши корінь в рівняння: {Function(rootInRangeAnother)}");
+        }
+
+        #region EightTask
+
+        static double Function(double x)
+        {
+            return Math.Pow(x, 3) - 4 * Math.Pow(x, 2) + 6;
+        }
+        static double FindRootInRange(double a, double b, double epsilon)
+        {
+            if (Function(a) * Function(b) >= 0)
+            {
+                Console.WriteLine($"Метод бісекції не може бути застосований для діапазону від {a} до {b}, оскільки на його кінцях функція має однаковий знак.");
+                return double.NaN;
+            }
+
+            double c;
+            int iterations = 0;
+
+            do
+            {
+                c = (a + b) / 2;
+                if (Function(c) == 0)
+                    break;
+                else if (Function(c) * Function(a) < 0)
+                    b = c;
+                else
+                    a = c;
+
+                iterations++;
+            } while (Math.Abs(b - a) >= epsilon);
+
+            return c;
+        }
+
+        #endregion
 
         static void f9()
         {
@@ -515,7 +571,7 @@ namespace Lab2
         #endregion
         static void Main(string[] args)
         {
-            f9();
+            
         }
         
     }
