@@ -120,17 +120,39 @@ namespace Lab2
 
         static void f3()
         {
-            Console.WriteLine("Array before min max swap: ");
-            PrintArray(arr1);
-            Console.WriteLine("Array after min max swap: ");
-            MinMaxSwap(arr1);
-            PrintArray(arr1);
-            Console.WriteLine("Array before first last swap: ");
-            PrintArray(arr1);
-            Console.WriteLine("Array after first last swap: ");
-            SwapFirstAndLast(arr1);
-            PrintArray(arr1);
-            
+            Console.WriteLine("Choose an action:");
+            Console.WriteLine("1. Swap min and max");
+            Console.WriteLine("2. Swap first and last");
+            Console.Write("Enter your choice: ");
+
+            int choice;
+            if (int.TryParse(Console.ReadLine(), out choice))
+            {
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("Array before min max swap: ");
+                        PrintArray(arr1);
+                        Console.WriteLine("Array after min max swap: ");
+                        MinMaxSwap(arr1);
+                        PrintArray(arr1);
+                        break;
+                    case 2:
+                        Console.WriteLine("Array before first last swap: ");
+                        PrintArray(arr1);
+                        Console.WriteLine("Array after first last swap: ");
+                        SwapFirstAndLast(arr1);
+                        PrintArray(arr1);
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice.");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input.");
+            }
         }
 
         #region ThirdTask
@@ -178,14 +200,57 @@ namespace Lab2
 
         static void f6()
         {
-            matrix = CreateMatrix();
-            PrintMatrix(matrix);
-            CheckDeductedStudents(matrix);
-            PrintAveragePerStudent(matrix);
-            PrintDisciplineWithMaximumAverage(matrix);
+            Console.WriteLine("Choose an action:");
+            Console.WriteLine("1. Generate and print matrix");
+            Console.WriteLine("2. Check deducted students");
+            Console.WriteLine("3. Print average score per student");
+            Console.WriteLine("4. Print discipline with maximum average");
+            Console.Write("Enter your choice: ");
 
-
+            int choice;
+            if (int.TryParse(Console.ReadLine(), out choice))
+            {
+                switch (choice)
+                {
+                    case 1:
+                        matrix = CreateMatrix();
+                        PrintMatrix(matrix);
+                        break;
+                    case 2:
+                        if(matrix == null)
+                        {
+                            Console.WriteLine("Matrix is not generated yet.");
+                            break;
+                        }
+                        CheckDeductedStudents(matrix);
+                        break;
+                    case 3:
+                        if(matrix == null)
+                        {
+                            Console.WriteLine("Matrix is not generated yet.");
+                            break;
+                        }
+                        PrintAveragePerStudent(matrix);
+                        break;
+                    case 4:
+                        if(matrix == null)
+                        {
+                            Console.WriteLine("Matrix is not generated yet.");
+                            break;
+                        }
+                        PrintDisciplineWithMaximumAverage(matrix);
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice.");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input.");
+            }
         }
+
 
         #region SixTask
 
@@ -290,16 +355,57 @@ namespace Lab2
 
         static void f7()
         {
-            PrintMatrix(matrix);
-            matrix = DeleteMinDisciple(matrix);
-            Console.WriteLine();
-            PrintMatrix(matrix);
-            Console.WriteLine();
-            SortAndRearrangeColumns(matrix);
-            PrintMatrix(matrix);
-            Console.WriteLine("Insert number that you search: ");
-            int n = Convert.ToInt32(Console.ReadLine());
-            SearchNumber(matrix,n);
+            if(matrix == null)
+            {
+                Console.WriteLine("Matrix is not generated yet.");
+                return;
+            }
+
+            Console.WriteLine("Choose an action:");
+            Console.WriteLine("1. Print matrix");
+            Console.WriteLine("2. Delete min discipline");
+            Console.WriteLine("3. Sort and rearrange columns");
+            Console.WriteLine("4. Search for a number");
+            Console.Write("Enter your choice: ");
+
+            int choice;
+            if (int.TryParse(Console.ReadLine(), out choice))
+            {
+                switch (choice)
+                {
+                    case 1:
+                        PrintMatrix(matrix);
+                        break;
+                    case 2:
+                        matrix = DeleteMinDisciple(matrix);
+                        Console.WriteLine();
+                        PrintMatrix(matrix);
+                        break;
+                    case 3:
+                        SortAndRearrangeColumns(matrix);
+                        PrintMatrix(matrix);
+                        break;
+                    case 4:
+                        Console.WriteLine("Insert number that you search: ");
+                        int n;
+                        if(int.TryParse(Console.ReadLine(), out n))
+                        {
+                            SearchNumber(matrix, n);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid number.");
+                        }
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice.");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input.");
+            }
         }
 
         #region SevenTask
@@ -479,20 +585,53 @@ namespace Lab2
 
         static void f9()
         {
-            Console.WriteLine("Введіть рядок символів, який складається зі слів та пропусків між ними:");
-            string input = Console.ReadLine();
-            string[] words = SplitInputIntoWords(input);
-            Console.WriteLine("Words: ");
-            PrintWords(words);
+            Console.WriteLine("Choose an action:");
+            Console.WriteLine("1. Split input into words");
+            Console.WriteLine("2. Sort words by length");
+            Console.WriteLine("3. Sort words by first character");
+            Console.Write("Enter your choice: ");
 
-            SortWordsByLength(words);
-            Console.WriteLine("Words sorted by lenght: ");
-            PrintWords(words);
-
-            SortWordsByFirstCharacter(words);
-            Console.WriteLine("Words sorted by alphabet: ");
-            PrintWords(words);
+            int choice;
+            if (int.TryParse(Console.ReadLine(), out choice))
+            {
+                string input;
+                string[] words;
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("Enter a string of words separated by spaces:");
+                        input = Console.ReadLine();
+                        words = SplitInputIntoWords(input);
+                        Console.WriteLine("Words: ");
+                        PrintWords(words);
+                        break;
+                    case 2:
+                        Console.WriteLine("Enter a string of words separated by spaces:");
+                        input = Console.ReadLine();
+                        words = SplitInputIntoWords(input);
+                        SortWordsByLength(words);
+                        Console.WriteLine("Words sorted by length: ");
+                        PrintWords(words);
+                        break;
+                    case 3:
+                        Console.WriteLine("Enter a string of words separated by spaces:");
+                        input = Console.ReadLine();
+                        words = SplitInputIntoWords(input);
+                        SortWordsByFirstCharacter(words);
+                        Console.WriteLine("Words sorted by first character: ");
+                        PrintWords(words);
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice.");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input.");
+            }
         }
+
 
         #region NineTask
 
@@ -571,7 +710,76 @@ namespace Lab2
         #endregion
         static void Main(string[] args)
         {
-            
+            bool exit = false;
+            bool f1Done = false;
+            bool f6Done = false;
+
+            while (!exit)
+            {
+                Console.WriteLine("Choose a function to execute:");
+                Console.WriteLine("1. Sort an array");
+                Console.WriteLine("2. Print prime numbers");
+                Console.WriteLine("3. Swap elements in an array");
+                Console.WriteLine("4. Process matrix");
+                Console.WriteLine("5. Process matrix and search number");
+                Console.WriteLine("6. Find roots of an equation");
+                Console.WriteLine("7. Process strings");
+                Console.WriteLine("8. Exit");
+
+                int choice;
+                if (int.TryParse(Console.ReadLine(), out choice))
+                {
+                    switch (choice)
+                    {
+                        case 1:
+                            f1();
+                            f1Done = true;
+                            break;
+                        case 2:
+                            if (f1Done)
+                                f2();
+                            else
+                                Console.WriteLine("Function 1 must be executed first.");
+                            break;
+                        case 3:
+                            if (f1Done)
+                                f3();
+                            else
+                                Console.WriteLine("Function 1 must be executed first.");
+                            break;
+                        case 4:
+                            f6();
+                            f6Done = true;
+                            break;
+                        case 5:
+                            if (f6Done)
+                                f7();
+                            else
+                                Console.WriteLine("Function 4 must be executed first.");
+                            break;
+                        case 6:
+                            f8();
+                            break;
+                        case 7:
+                            f9();
+                            break;
+                        case 8:
+                            exit = true;
+                            break;
+                        default:
+                            Console.WriteLine("Invalid choice. Please enter a number between 1 and 8.");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid number.");
+                }
+
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                Console.Clear();
+            }
         }
         
     }
