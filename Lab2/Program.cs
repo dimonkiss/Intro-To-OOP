@@ -11,6 +11,7 @@ namespace Lab2
     internal class Program
     {
         public static int[] arr1;
+        public static int[,] matrix;
         static void f1()
         {
             int[] arr = InputArray();
@@ -21,6 +22,8 @@ namespace Lab2
             Console.WriteLine("Array after sorting: ");
             PrintArray(arr);
         }
+        
+        #region FirstTask
 
         static void PrintArray(int[] arr)
         {
@@ -30,9 +33,6 @@ namespace Lab2
             }
             Console.WriteLine();
         }
-        
-        #region FirstTask
-
         static int[] InputArray()
         {
             Console.WriteLine("Insert quantity of items in array: ");
@@ -173,10 +173,257 @@ namespace Lab2
         
         #endregion
 
+        //f4 - f5 незрозумілі завдання 
+
+
+        static void f6()
+        {
+            matrix = CreateMatrix();
+            PrintMatrix(matrix);
+            CheckDeductedStudents(matrix);
+            PrintAveragePerStudent(matrix);
+            PrintDisciplineWithMaximumAverage(matrix);
+
+
+        }
+
+        #region SixTask
+
+        static int[,] CreateMatrix()
+        {
+            Random random = new Random();
+            Console.WriteLine("Insert quantity of rows in matrix: ");
+            int rows = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Insert quantity of cols in matrix: ");
+            int cols = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Insert minimum of array: ");
+            int min = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Insert maximum of array: ");
+            int max = Convert.ToInt32(Console.ReadLine());
+            int[,] matrix = new int[rows, cols];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    matrix[i, j] = random.Next(min, max);
+                }
+            }
+            return matrix;
+        }
+        
+        static void PrintMatrix(int[,] matrix)
+        {
+            int rows = matrix.GetLength(0);
+            int cols = matrix.GetLength(1);
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    Console.Write(matrix[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+        
+        static void CheckDeductedStudents(int[,] matrix)
+        {
+            int rows = matrix.GetLength(0);
+            int cols = matrix.GetLength(1);
+            for (int i = 0; i < rows; ++i)
+            {
+                int limit = 0;
+                for (int j = 0; j < cols; ++j)
+                {
+                    if (matrix[i, j] < 60)
+                    {
+                        ++limit;
+                    }
+                }
+                if (limit == cols)
+                {
+                    Console.WriteLine($"Student {i} deducted for all subjects");
+                }
+            }
+        }
+        
+        static void PrintAveragePerStudent(int[,] matrix)
+        {
+            int rows = matrix.GetLength(0);
+            int cols = matrix.GetLength(1);
+            Console.WriteLine("Avarage per student: ");
+            for (int i = 0; i < rows; i++)
+            {
+                int avg = 0;
+                for (int j = 0; j < cols; j++)
+                {
+                    avg += matrix[i, j];
+                }
+                Console.Write(avg / cols + " ");
+            }
+            Console.WriteLine();
+        }
+        
+        static void PrintDisciplineWithMaximumAverage(int[,] matrix)
+        {
+            int rows = matrix.GetLength(0);
+            int cols = matrix.GetLength(1);
+            int maximumSum = 0;
+            int maxColumnIndex = 0;
+
+            for (int i = 0; i < cols; ++i)
+            {
+                int columnSum = 0;
+                for (int j = 0; j < rows; ++j)
+                {
+                    columnSum += matrix[j, i];
+                }
+                if (columnSum > maximumSum)
+                {
+                    maximumSum = columnSum;
+                    maxColumnIndex = i;
+                }
+            }
+            Console.WriteLine($"Discipline that has the maximum average is column index {maxColumnIndex}");
+        }
+
+        #endregion
+
+        static void f7()
+        {
+            PrintMatrix(matrix);
+            matrix = DeleteMinDisciple(matrix);
+            Console.WriteLine();
+            PrintMatrix(matrix);
+            Console.WriteLine();
+            SortAndRearrangeColumns(matrix);
+            PrintMatrix(matrix);
+            Console.WriteLine("Insert number that you search: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            SearchNumber(matrix,n);
+        }
+
+        #region SevenTask
+
+        static int[,] DeleteMinDisciple(int[,] matrix)
+        {
+            int minColumnIndex = 0;
+            double minAverage = double.MaxValue;
+            int rows = matrix.GetLength(0);
+            int columns = matrix.GetLength(1);
+
+            for (int j = 0; j < columns; j++)
+            {
+                double sum = 0;
+
+                for (int i = 0; i < rows; i++)
+                {
+                    sum += matrix[i, j];
+                }
+
+                double average = sum / rows;
+
+                if (average < minAverage)
+                {
+                    minAverage = average;
+                    minColumnIndex = j;
+                }
+            }
+
+            Console.WriteLine($"Discipline that has the minimum average is column index {minColumnIndex}");
+            
+            int[,] result = new int[rows, columns - 1]; 
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0, k = 0; j < columns; j++) 
+                {
+                    if (j != minColumnIndex)
+                    {
+                        result[i, k] = matrix[i, j];
+                        k++;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        static void SortAndRearrangeColumns(int[,] matrix)
+        {
+            int rows = matrix.GetLength(0);
+            int columns = matrix.GetLength(1);
+            
+            double[] columnAverages = new double[columns];
+            int[] columnIndices = new int[columns];
+            for (int j = 0; j < columns; j++)
+            {
+                double sum = 0;
+                for (int i = 0; i < rows; i++)
+                {
+                    sum += matrix[i, j];
+                }
+                double average = sum / rows;
+                columnAverages[j] = average;
+                columnIndices[j] = j;
+            }
+            
+            SortColumns(columnIndices, columnAverages);
+            
+            int[,] result = new int[rows, columns];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    result[i, j] = matrix[i, columnIndices[j]];
+                }
+            }
+            
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    matrix[i, j] = result[i, j];
+                }
+            }
+        }
+        
+        static void SortColumns(int[] columnIndices, double[] columnAverages)
+        {
+            int n = columnIndices.Length;
+            for (int i = 0; i < n - 1; i++)
+            {
+                for (int j = 0; j < n - i - 1; j++)
+                {
+                    if (columnAverages[columnIndices[j]] < columnAverages[columnIndices[j + 1]])
+                    {
+                        // Swap column indices
+                        int temp = columnIndices[j];
+                        columnIndices[j] = columnIndices[j + 1];
+                        columnIndices[j + 1] = temp;
+                    }
+                }
+            }
+        }
+
+        static void SearchNumber(int[,] matrix, int n)
+        {
+            for (int i = 0; i < matrix.GetLength(0); ++i)
+            {
+                for (int j = 0; j < matrix.GetLength(1); ++j)
+                {
+                    if (matrix[i, j] == n)
+                    {
+                        Console.WriteLine($"Number {n} is located on {i} row {j} column");
+                    }
+                }
+            }
+        }
+        #endregion
+
         static void Main(string[] args)
         {
-            f1();
-            f3();
+            f6();
+            f7();
         }
     }
 }
