@@ -420,10 +420,103 @@ namespace Lab2
         }
         #endregion
 
+
+        static void f9()
+        {
+            Console.WriteLine("Введіть рядок символів, який складається зі слів та пропусків між ними:");
+            string input = Console.ReadLine();
+            string[] words = SplitInputIntoWords(input);
+            Console.WriteLine("Words: ");
+            PrintWords(words);
+
+            SortWordsByLength(words);
+            Console.WriteLine("Words sorted by lenght: ");
+            PrintWords(words);
+
+            SortWordsByFirstCharacter(words);
+            Console.WriteLine("Words sorted by alphabet: ");
+            PrintWords(words);
+        }
+
+        #region NineTask
+
+        static string[] SplitInputIntoWords(string input)
+        {
+            int wordCount = 1;
+            string[] words = new string[wordCount];
+            int temp = 0;
+            string word;
+            for (int i = 0; i < input.Length; ++i)
+            {
+                word = "";
+                if (input[i] == ' ')
+                {
+                    for (int j = temp; j < i; ++j)
+                    {
+                        word += input[j];
+                    }
+
+                    Array.Resize(ref words, ++wordCount);
+                    words[wordCount - 2] = word;
+                    temp = i + 1;
+                }
+            }
+
+            word = "";
+            for (int j = temp; j < input.Length; ++j)
+            {
+                word += input[j];
+            }
+            words[wordCount - 1] = word;
+
+            return words;
+        }
+
+        static void SortWordsByLength(string[] words)
+        {
+            for (int i = 0; i < words.Length - 1; i++)
+            {
+                for (int j = 0; j < words.Length - 1 - i; j++)
+                {
+                    if (words[j].Length < words[j + 1].Length)
+                    {
+                        string temp1 = words[j];
+                        words[j] = words[j + 1];
+                        words[j + 1] = temp1;
+                    }
+                }
+            }
+        }
+
+        static void SortWordsByFirstCharacter(string[] words)
+        {
+            for (int i = 0; i < words.Length - 1; i++)
+            {
+                for (int j = 0; j < words.Length - 1 - i; j++)
+                {
+                    if (words[j][0] > words[j + 1][0])
+                    {
+                        string temp1 = words[j];
+                        words[j] = words[j + 1];
+                        words[j + 1] = temp1;
+                    }
+                }
+            }
+        }
+
+        static void PrintWords(string[] words)
+        {
+            foreach (var w in words)
+            {
+                Console.WriteLine(w);
+            }
+        }
+
+        #endregion
         static void Main(string[] args)
         {
-            f6();
-            f7();
+            f9();
         }
+        
     }
 }
