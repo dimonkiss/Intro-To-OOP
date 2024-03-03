@@ -28,8 +28,8 @@
             this.course = course;
             this.speciality = speciality;
             this.university = university;
-            this.rating = rating;
             this.science_achievements = scienceAchievements;
+            this.rating = rating;
         }
 
         public string Surname
@@ -91,8 +91,7 @@
             Console.Write("University: ");
             university = Console.ReadLine();
 
-            Console.Write("Rating: ");
-            rating = double.Parse(Console.ReadLine());
+
 
             Console.Write("Number of science achievements: ");
             int count = int.Parse(Console.ReadLine());
@@ -102,6 +101,9 @@
                 Console.Write($"Enter achievement {i + 1}: ");
                 science_achievements[i] = Console.ReadLine();
             }
+            
+
+            rating = CalculationRating();
         }
 
         public void OutputToConsole()
@@ -135,6 +137,57 @@
                 {
                     writer.WriteLine(achievement);
                 }
+            }
+
+            Console.WriteLine($"Student was added to a file {filePath}");
+        }
+
+        public double CalculationRating()
+        {
+            double rating = 0;
+            Random random = new Random();
+            double sum = 0;
+            for (int i = 0; i < 10; ++i)
+            {
+                sum += random.Next(40, 101);
+            }
+
+            rating += sum / 10;
+
+            for (int i = 0; i < science_achievements.Length; ++i)
+            {
+                if (science_achievements[i].Contains("Article"))
+                {
+                    rating += 5;
+                }
+                if (science_achievements[i].Contains("Conference"))
+                {
+                    rating += 4;
+                }
+                if (science_achievements[i].Contains("Participation"))
+                {
+                    rating += 4;
+                }
+            }
+
+            bool english = Convert.ToBoolean(random.Next(0, 2));
+            if (english)
+            {
+                rating += 2;
+            }
+
+            return rating;
+        }
+
+        public void IQCalculation()
+        {
+            Random random = new Random();
+            int IQ = random.Next(80, 161);
+            
+            WriteToFile("students_iq.txt");
+            using (StreamWriter writer = new StreamWriter("students_iq.txt"))
+            {
+                writer.WriteLine($"IQ of this student is: {IQ}");
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿namespace Lab3
 {
+
     public class AcademicMobility
     {
         private string[] international_programs;
@@ -109,6 +110,45 @@
                     writer.WriteLine(contact);
                 }
             }
+        }
+        public void RegisterStudent(Student student){
+            OutputToConsole();
+            Console.WriteLine("On which inrantional program student want to register: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            student.WriteToFile($"{this.international_programs[choice]}.txt");
+
+            Console.WriteLine($"Студент {student.Surname} {student.Name} зареєстрований на програму міжнародної мобільності {international_programs[choice]}.");
+        }
+
+        static int BinarySearch(string[] arr, string target)
+        {
+            int left = 0;
+            int right = arr.Length - 1;
+
+            while (left <= right)
+            {
+                int mid = left + (right - left) / 2;
+
+                int compareResult = string.Compare(arr[mid], target);
+
+                if (compareResult == 0)
+                    return mid;
+
+                if (compareResult < 0)
+                    left = mid + 1;
+
+                else
+                    right = mid - 1;
+            }
+
+            return -1;
+        }
+        public void SearchforUniversity()
+        {
+            Console.WriteLine("Which international program you want to search: ");
+            string choice = Console.ReadLine();
+            int index = BinarySearch(international_programs, choice);
+            Console.WriteLine($"Best university for you would be {university_partners[index]}");
         }
     }
 }
