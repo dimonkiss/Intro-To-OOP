@@ -31,7 +31,7 @@ public class Compendium : Book
     public bool FreeAccessProp
     {
         get { return FreeAccess; }
-        set { FreeAccess = value; }
+        set { FreeAccess = value; } 
     }
     
     public new void DisplayInfo()
@@ -40,5 +40,17 @@ public class Compendium : Book
         Console.WriteLine("Student Name: " + StudentName);
         Console.WriteLine("Language: " + Language);
         Console.WriteLine("Free Access: " + FreeAccess);
+    }
+    
+    public double CalculateDifficulty(int numberOfStudents)
+    {
+        // складність зростає зі збільшенням кількості студентів
+        return numberOfStudents * 0.1;
+    }
+    
+    public double CalculateNoteTakingEfficiency(int informationQuantity, int understandingLevel)
+    {
+        // Складність зростає  зі збільшенням кількості та складності інформації, яку потрібно запам'ятати
+        return informationQuantity * 0.05 + understandingLevel * 0.1;
     }
 }

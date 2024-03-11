@@ -38,4 +38,9 @@ public class TextBook : Book
         Console.WriteLine("Quantity of Pages: " + QuantityOfPages);
         Console.WriteLine("Rating: " + Rating);
     }
+    
+    public override double CalculateBookPopularityRating(double weeklySales, double monthlySales)
+    {
+        return base.CalculateBookPopularityRating(weeklySales, monthlySales) + Rating;
+    }
 }

@@ -35,4 +35,10 @@ public class Book
         Console.WriteLine("Name: " + Name);
         Console.WriteLine("Price: $" + Price);
     }
+    
+    public virtual double CalculateBookPopularityRating(double weeklySales, double monthlySales)
+    {
+        // Можна реалізувати складнішу логіку розрахунку залежно від конкретних вимог
+        return weeklySales * 0.5 + monthlySales * 0.5;
+    }
 }
