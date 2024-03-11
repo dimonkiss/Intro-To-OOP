@@ -1,0 +1,7 @@
+Surname: 123
+Name: 123
+Course: 1
+Speciality: 123
+University: 123
+Rating: 123
+Science Achievements:
