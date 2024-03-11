@@ -20,6 +20,28 @@ namespace Lab3
 
             Student student = new Student();
             student.IQCalculation();
+            
+            Console.WriteLine("Оберіть опцію:");
+            Console.WriteLine("1. Робота з масивом");
+            Console.WriteLine("2. Робота з матрицею");
+            Console.WriteLine("3. Робота з рядком");
+            int option = int.Parse(Console.ReadLine());
+
+            switch (option)
+            {
+                case 1:
+                    ResearchWork.IndexesInArray();
+                    break;
+                case 2:
+                    ResearchWork.ActionsWithMatrix();
+                    break;
+                case 3:
+                    ResearchWork.ActionsWithString();
+                    break;
+                default:
+                    Console.WriteLine("Невірний вибір опції.");
+                    break;
+            }
         }
     }
 }
