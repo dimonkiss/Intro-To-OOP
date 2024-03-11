@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Lab3
 {
-    public class AcademicMobility
+    public partial class AcademicMobility
     {
         private string[] international_programs;
         private string[] university_partners;
@@ -156,7 +156,7 @@ namespace Lab3
             Console.WriteLine($"Best university for you would be {university_partners[index]}");
         }
 
-        public class InterProgram
+        public  class InterProgram
         {
             public string ProgramName { get; set; }
             public int NumberOfStudents { get; set; }
