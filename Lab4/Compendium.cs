@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Lab3;
+namespace Lab4;
 
 public class Compendium : Book
 {

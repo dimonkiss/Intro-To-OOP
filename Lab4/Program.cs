@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lab3
+namespace Lab4
 {
     class Program
     {
@@ -58,6 +58,22 @@ namespace Lab3
             // Виклик методів через посилання на базовий абстрактний клас
             textbook1.DisplayInfo();
             summary1.DisplayInfo();
+            
+            
+            //task 9
+            BookWithInterfaces[] books = new BookWithInterfaces[]
+            {
+                new BookWithInterfaces { Name = "Book1", Price = 10.99, Pages = 100 },
+                new BookWithInterfaces { Name = "Book2", Price = 15.99, Pages = 200 },
+                new BookWithInterfaces { Name = "Book3", Price = 5.99, Pages = 150 }
+            };
+
+
+            Console.WriteLine("Books sorted by price and then by number of pages:");
+            foreach (var i in books.OrderBy(b => b.Price).ThenBy(b => b.Pages))
+            {
+                Console.WriteLine($"{i.Name} - Price: {i.Price}, Pages: {i.Pages}");
+            }
         }
     }
 }
