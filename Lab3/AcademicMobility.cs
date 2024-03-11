@@ -1,6 +1,8 @@
-﻿namespace Lab3
-{
+﻿using System;
+using System.IO;
 
+namespace Lab3
+{
     public class AcademicMobility
     {
         private string[] international_programs;
@@ -38,8 +40,8 @@
             get { return contacts; }
             set { contacts = value; }
         }
-        
-         public void InputFromConsole()
+
+        public void InputFromConsole()
         {
             Console.WriteLine("Enter Academic Mobility details:");
             Console.Write("Number of International Programs: ");
@@ -111,13 +113,15 @@
                 }
             }
         }
-        public void RegisterStudent(Student student){
+
+        public void RegisterStudent(Student student)
+        {
             OutputToConsole();
-            Console.WriteLine("On which inrantional program student want to register: ");
+            Console.WriteLine("On which international program student want to register: ");
             int choice = Convert.ToInt32(Console.ReadLine());
             student.WriteToFile($"{this.international_programs[choice]}.txt");
 
-            Console.WriteLine($"Студент {student.Surname} {student.Name} зареєстрований на програму міжнародної мобільності {international_programs[choice]}.");
+            Console.WriteLine($"Student {student.Surname} {student.Name} is registered for the international mobility program {international_programs[choice]}.");
         }
 
         static int BinarySearch(string[] arr, string target)
@@ -143,6 +147,7 @@
 
             return -1;
         }
+
         public void SearchforUniversity()
         {
             Console.WriteLine("Which international program you want to search: ");
@@ -150,5 +155,40 @@
             int index = BinarySearch(international_programs, choice);
             Console.WriteLine($"Best university for you would be {university_partners[index]}");
         }
+
+        public class InterProgram
+        {
+            public string ProgramName { get; set; }
+            public int NumberOfStudents { get; set; }
+
+            public InterProgram(string programName, int numberOfStudents)
+            {
+                ProgramName = programName;
+                NumberOfStudents = numberOfStudents;
+            }
+
+            public void PresentInternationalPrograms()
+            {
+                Console.WriteLine($"Program: {ProgramName}, Students: {NumberOfStudents}");
+            }
+
+            public void ConductCompetition(Student[] candidates)
+            {
+                // Sorting candidates based on some criteria (e.g., Rating)
+                var sortedCandidates = candidates.OrderByDescending(student => student.Rating).ToArray();
+
+                // Selecting the best candidates (e.g., top 10)
+                int numberOfWinners = Math.Min(10, sortedCandidates.Length);
+
+                Console.WriteLine("The winners of the competition are:");
+
+                for (int i = 0; i < numberOfWinners; i++)
+                {
+                    Console.WriteLine($"{sortedCandidates[i].Name} {sortedCandidates[i].Surname}");
+                }
+            }
+        }
+        
+        
     }
 }
