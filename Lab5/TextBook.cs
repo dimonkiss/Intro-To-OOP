@@ -106,5 +106,26 @@ namespace Lab5
         {
             return TextBook1.CalculateStudentRating() < TextBook2.CalculateStudentRating();
         }
+        
+        public static TextBook operator ++(TextBook TextBook)
+        {
+            // Збільшення рейтингу, наприклад, залежно від кількості скачувань
+            TextBook.Rating += 1;
+            return TextBook;
+        }
+
+        public static TextBook operator --(TextBook TextBook)
+        {
+            // Зменшення рейтингу, наприклад, внаслідок від’ємних відгуків
+            TextBook.Rating -= 1;
+            return TextBook;
+        }
+
+        public static TextBook operator -(TextBook TextBook)
+        {
+            // Від’ємний рейтинг (зміна знаку)
+            TextBook.Rating = -TextBook.Rating;
+            return TextBook;
+        }
     }
 }

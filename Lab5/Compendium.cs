@@ -7,12 +7,13 @@ namespace Lab5
         private string StudentName;
         private string Language;
         private bool FreeAccess;
-
+        private double studentRating;
         public Compendium() : base()
         {
             StudentName = "";
             Language = "";
             FreeAccess = false;
+            studentRating = 0.0;
         }
 
         public Compendium(string name, double price, string studentName, string language, bool freeAccess) : base(name, price)
@@ -20,6 +21,7 @@ namespace Lab5
             StudentName = studentName;
             Language = language;
             FreeAccess = freeAccess;
+            studentRating = 0.0;
         }
 
         public Compendium(Compendium other) : base(other)
@@ -27,6 +29,7 @@ namespace Lab5
             StudentName = other.StudentName;
             Language = other.Language;
             FreeAccess = other.FreeAccess;
+            studentRating = other.studentRating;
         }
 
         public string StudentNameProp
@@ -45,6 +48,11 @@ namespace Lab5
         {
             get { return FreeAccess; }
             set { FreeAccess = value; }
+        }
+        public double StudentRating // Властивість для доступу до рейтингу студента
+        {
+            get { return studentRating; }
+            set { studentRating = value; }
         }
 
         public new void DisplayInfo()
@@ -90,7 +98,7 @@ namespace Lab5
 
             // Розрахунок рейтингу на основі випадкових значень
             double studentRating = (relevance + modernity + internetReviews + materialAvailability) / 4;
-
+            this.studentRating = studentRating;
             return studentRating;
         }
 
@@ -113,5 +121,28 @@ namespace Lab5
         {
             return compendium1.CalculateStudentRating() < compendium2.CalculateStudentRating();
         }
+        
+        public static Compendium operator ++(Compendium compendium)
+        {
+            // Збільшення рейтингу, наприклад, залежно від кількості скачувань
+            compendium.studentRating += 1;
+            return compendium;
+        }
+
+        public static Compendium operator --(Compendium compendium)
+        {
+            // Зменшення рейтингу, наприклад, внаслідок від’ємних відгуків
+            compendium.studentRating -= 1;
+            return compendium;
+        }
+
+        public static Compendium operator -(Compendium compendium)
+        {
+            // Від’ємний рейтинг (зміна знаку)
+            compendium.studentRating = -compendium.studentRating;
+            return compendium;
+        }
+        
+        
     }
 }
