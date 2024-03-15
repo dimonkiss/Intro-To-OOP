@@ -1,5 +1,7 @@
-﻿    namespace Lab5;
+﻿using System;
 
+namespace Lab5
+{
     public class TextBook : Book
     {
         private string Author;
@@ -57,4 +59,52 @@
         {
             return base.CalculateBookPopularityRating(weeklySales, monthlySales) + Rating;
         }
+
+        public double CalculateStudentRating()
+        {
+            // Випадкові значення для критеріїв
+            Random rand = new Random();
+            double relevance = rand.NextDouble() * 5; // Актуальність
+            double modernity = rand.NextDouble() * 5; // Сучасність
+            double internetReviews = rand.NextDouble() * 5; // Відгуки в Інтернеті
+            double materialAvailability = rand.NextDouble() * 5; // Доступність матеріалу
+
+            // Розрахунок рейтингу на основі випадкових значень
+            double studentRating = (relevance + modernity + internetReviews + materialAvailability) / 4;
+
+            return studentRating;
+        }
+
+        public override string MaterialAvailability()
+        {
+            // Припустимо, що доступність матеріалу кодується цифровим значенням
+            int accessibilityCode = 3; // Припустимо, що 3 означає "проста"
+            return "Material Accessibility: " + accessibilityCode;
+        }
+
+        public override string TextbookStatus()
+        {
+            return "Textbook Status: Approved";
+        }
+        
+        public static bool operator ==(TextBook TextBook1, TextBook TextBook2)
+        {
+            return TextBook1.CalculateStudentRating() == TextBook2.CalculateStudentRating();
+        }
+
+        public static bool operator !=(TextBook TextBook1, TextBook TextBook2)
+        {
+            return TextBook1.CalculateStudentRating() != TextBook2.CalculateStudentRating();
+        }
+
+        public static bool operator >(TextBook TextBook1, TextBook TextBook2)
+        {
+            return TextBook1.CalculateStudentRating() > TextBook2.CalculateStudentRating();
+        }
+
+        public static bool operator <(TextBook TextBook1, TextBook TextBook2)
+        {
+            return TextBook1.CalculateStudentRating() < TextBook2.CalculateStudentRating();
+        }
     }
+}

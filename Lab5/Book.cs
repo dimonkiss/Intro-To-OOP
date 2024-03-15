@@ -47,4 +47,16 @@ public class Book
         // Можна реалізувати складнішу логіку розрахунку залежно від конкретних вимог
         return weeklySales * 0.5 + monthlySales * 0.5;
     }
+    
+    public virtual string MaterialAvailability()
+    {
+        return "Material Accessibility: Not specified";
+    }
+    
+    public virtual string TextbookStatus()
+    {
+        return "Textbook Status: Not specified";
+    }
+    
+    
 }
