@@ -7,15 +7,28 @@ public class Compendium : Book
     private string StudentName;
     private string Language;
     private bool FreeAccess;
-    
-    
+
+    public Compendium() : base()
+    {
+        StudentName = "";
+        Language = "";
+        FreeAccess = false;
+    }
+
     public Compendium(string name, double price, string studentName, string language, bool freeAccess) : base(name, price)
     {
         StudentName = studentName;
         Language = language;
         FreeAccess = freeAccess;
     }
-    
+
+    public Compendium(Compendium other) : base(other)
+    {
+        StudentName = other.StudentName;
+        Language = other.Language;
+        FreeAccess = other.FreeAccess;
+    }
+
     public string StudentNameProp
     {
         get { return StudentName; }
@@ -31,9 +44,9 @@ public class Compendium : Book
     public bool FreeAccessProp
     {
         get { return FreeAccess; }
-        set { FreeAccess = value; } 
+        set { FreeAccess = value; }
     }
-    
+
     public new void DisplayInfo()
     {
         base.DisplayInfo();
@@ -41,13 +54,13 @@ public class Compendium : Book
         Console.WriteLine("Language: " + Language);
         Console.WriteLine("Free Access: " + FreeAccess);
     }
-    
+
     public double CalculateDifficulty(int numberOfStudents)
     {
         // складність зростає зі збільшенням кількості студентів
         return numberOfStudents * 0.1;
     }
-    
+
     public double CalculateNoteTakingEfficiency(int informationQuantity, int understandingLevel)
     {
         // Складність зростає  зі збільшенням кількості та складності інформації, яку потрібно запам'ятати
