@@ -5,11 +5,9 @@ public class Thermostat
     // Унікальний ідентифікатор терморегулятора
     private int id;
     
-    // Максимальна температура, яку може виміряти або регулювати терморегулятор, в градусах Цельсія (°C)
-    private double maxTemperature;
     
-    // Мінімальна температура, яку може виміряти або регулювати терморегулятор, в градусах Цельсія (°C)
-    private double minTemperature;
+    // температура, яку може виміряти або регулювати терморегулятор, в градусах Цельсія (°C)
+    private double temperature;
     
     // Точність вимірювання температури терморегулятора, в градусах Цельсія (°C)
     private double temperatureAccuracy;
@@ -22,17 +20,12 @@ public class Thermostat
         get { return id; }
         set { id = value; }
     }
+    
 
-    public double MaxTemperature
+    public double Temperature
     {
-        get { return maxTemperature; }
-        set { maxTemperature = value; }
-    }
-
-    public double MinTemperature
-    {
-        get { return minTemperature; }
-        set { minTemperature = value; }
+        get { return Temperature; }
+        set { temperature = value; }
     }
 
     public double TemperatureAccuracy
