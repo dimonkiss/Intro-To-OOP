@@ -2,17 +2,21 @@
 
 public class Refrigerator
 {
+    private int maxTemperature;
+    private int minTemperature;
     private EmbeddedMicroprocessor microprocessor;
     private ElectricalEquipment electricalEquipment;
     private RefrigeratorCabinet refrigeratorCabinet;
     private List<Product> products = new List<Product>();
 
     public Refrigerator(EmbeddedMicroprocessor microprocessor, ElectricalEquipment electricalEquipment, 
-        RefrigeratorCabinet refrigeratorCabinet)
+        RefrigeratorCabinet refrigeratorCabinet,int maxTemperature, int minTemperature)
     {
         this.microprocessor = microprocessor;
         this.electricalEquipment = electricalEquipment;
         this.refrigeratorCabinet = refrigeratorCabinet;
+        this.maxTemperature = maxTemperature;
+        this.minTemperature = minTemperature;
     }
     
     public List<Product> Products
@@ -42,7 +46,16 @@ public class Refrigerator
     // Метод для додавання продукту в холодильник
     public void AddProduct(Product product)
     {
-        products.Add(product);
+        try
+        {
+            products.Add(product);
+        }
+        catch (IndexOutOfRangeException ex)
+        {
+            // Обробка вихіду за межі масиву
+            Console.WriteLine("Вихід за межі масиву: " + ex.Message);
+        }
+
     }
 
     // Метод для видалення продукту з холодильника
@@ -147,5 +160,23 @@ public class Refrigerator
         }
 
         Console.WriteLine("\nБажаємо смачного сніданку!");
+    }
+    
+    // Метод для включення холодильника
+    public void TurnOn()
+    {
+        Console.WriteLine("Холодильник увімкнено.");
+    }
+
+    // Метод для моделювання збою в роботі холодильника
+    public void SimulateMalfunction()
+    {
+        throw new RefrigeratorMalfunctionException("Компресор вийшов з ладу.");
+    }
+
+    // Метод для відкриття дверцят холодильника
+    public void OpenDoor()
+    {
+        Console.WriteLine("Дверцята холодильника відкриті.");
     }
 }
