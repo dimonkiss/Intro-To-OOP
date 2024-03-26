@@ -5,6 +5,7 @@ public class Refrigerator
     private EmbeddedMicroprocessor microprocessor;
     private ElectricalEquipment electricalEquipment;
     private RefrigeratorCabinet refrigeratorCabinet;
+    private List<Product> products = new List<Product>();
 
     public Refrigerator(EmbeddedMicroprocessor microprocessor, ElectricalEquipment electricalEquipment, 
         RefrigeratorCabinet refrigeratorCabinet)
@@ -12,6 +13,12 @@ public class Refrigerator
         this.microprocessor = microprocessor;
         this.electricalEquipment = electricalEquipment;
         this.refrigeratorCabinet = refrigeratorCabinet;
+    }
+    
+    public List<Product> Products
+    {
+        get { return products; }
+        set { products = value; }
     }
     
     public EmbeddedMicroprocessor Microprocessor
@@ -30,5 +37,17 @@ public class Refrigerator
     {
         get { return refrigeratorCabinet; }
         set { refrigeratorCabinet = value; }
+    }
+    
+    // Метод для додавання продукту в холодильник
+    public void AddProduct(Product product)
+    {
+        products.Add(product);
+    }
+
+    // Метод для видалення продукту з холодильника
+    public void RemoveProduct(Product product)
+    {
+        products.Remove(product);
     }
 }
