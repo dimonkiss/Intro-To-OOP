@@ -12,4 +12,34 @@ public class Housing
     private double width;
     private double height;
     private double depth;
+    
+    public int Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+
+    public string Material
+    {
+        get { return material; }
+        set { material = value; }
+    }
+
+    public double Width
+    {
+        get { return width; }
+        set { width = value; }
+    }
+
+    public double Height
+    {
+        get { return height; }
+        set { height = value; }
+    }
+
+    public double Depth
+    {
+        get { return depth; }
+        set { depth = value; }
+    }
 }

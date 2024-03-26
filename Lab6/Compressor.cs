@@ -19,4 +19,41 @@ public class Compressor
     
     // Тип компресора (поршневий, відцентровий, винтовий тощо)
     private string type;
+    
+    
+    public int Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+
+    public double Power
+    {
+        get { return power; }
+        set { power = value; }
+    }
+
+    public double DisplacementVolume
+    {
+        get { return displacementVolume; }
+        set { displacementVolume = value; }
+    }
+
+    public double MaxCompressionPressure
+    {
+        get { return maxCompressionPressure; }
+        set { maxCompressionPressure = value; }
+    }
+
+    public double Frequency
+    {
+        get { return frequency; }
+        set { frequency = value; }
+    }
+
+    public string Type
+    {
+        get { return type; }
+        set { type = value; }
+    }
 }

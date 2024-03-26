@@ -16,4 +16,34 @@ public class EmbeddedMicroprocessor
     
     // Кількість ядер мікропроцесора
     private int cores;
+    
+    public int Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+
+    public string Model
+    {
+        get { return model; }
+        set { model = value; }
+    }
+
+    public string Type
+    {
+        get { return type; }
+        set { type = value; }
+    }
+
+    public double Frequency
+    {
+        get { return frequency; }
+        set { frequency = value; }
+    }
+
+    public int Cores
+    {
+        get { return cores; }
+        set { cores = value; }
+    }
 }

@@ -16,4 +16,34 @@ public class Thermostat
     
     // Тип терморегулятора (аналоговий, цифровий, програмований тощо)
     private string type;
+    
+    public int Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+
+    public double MaxTemperature
+    {
+        get { return maxTemperature; }
+        set { maxTemperature = value; }
+    }
+
+    public double MinTemperature
+    {
+        get { return minTemperature; }
+        set { minTemperature = value; }
+    }
+
+    public double TemperatureAccuracy
+    {
+        get { return temperatureAccuracy; }
+        set { temperatureAccuracy = value; }
+    }
+
+    public string Type
+    {
+        get { return type; }
+        set { type = value; }
+    }
 }

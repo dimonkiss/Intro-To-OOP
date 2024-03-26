@@ -13,4 +13,28 @@ public class Refrigerant
     
     // Температура кристалізації холодоагента в градусах Цельсія (°C)
     private double freezingTemperature;
+    
+    public int Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+    }
+
+    public double BoilingTemperature
+    {
+        get { return boilingTemperature; }
+        set { boilingTemperature = value; }
+    }
+
+    public double FreezingTemperature
+    {
+        get { return freezingTemperature; }
+        set { freezingTemperature = value; }
+    }
 }

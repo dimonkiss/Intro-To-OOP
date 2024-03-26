@@ -12,4 +12,22 @@ public class RefrigeratorCabinet
         this.door = door;
         this.insulation = insulation;
     }
+    
+    public Housing Housing
+    {
+        get { return housing; }
+        set { housing = value; }
+    }
+
+    public Door Door
+    {
+        get { return door; }
+        set { door = value; }
+    }
+
+    public ThermalInsulation Insulation
+    {
+        get { return insulation; }
+        set { insulation = value; }
+    }
 }

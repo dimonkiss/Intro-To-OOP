@@ -13,4 +13,28 @@ public class Condenser
     
     // Тип конденсатора (наприклад, повітряний, водяний, тощо)
     private string type;
+    
+    public int Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+
+    public double SurfaceArea
+    {
+        get { return surfaceArea; }
+        set { surfaceArea = value; }
+    }
+
+    public string Material
+    {
+        get { return material; }
+        set { material = value; }
+    }
+
+    public string Type
+    {
+        get { return type; }
+        set { type = value; }
+    }
 }

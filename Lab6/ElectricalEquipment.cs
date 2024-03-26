@@ -22,4 +22,46 @@ public class ElectricalEquipment
         this.refrigerant = refrigerant;
         this.automationDevices = automationDevices;
     }
+    
+    public ElectricMotor Motor
+    {
+        get { return motor; }
+        set { motor = value; }
+    }
+
+    public Compressor Compressor
+    {
+        get { return compressor; }
+        set { compressor = value; }
+    }
+
+    public Evaporator Evaporator
+    {
+        get { return evaporator; }
+        set { evaporator = value; }
+    }
+
+    public Condenser Condenser
+    {
+        get { return condenser; }
+        set { condenser = value; }
+    }
+
+    public Thermostat Thermostat
+    {
+        get { return thermostat; }
+        set { thermostat = value; }
+    }
+
+    public Refrigerant Refrigerant
+    {
+        get { return refrigerant; }
+        set { refrigerant = value; }
+    }
+
+    public AutomationDevices AutomationDevices
+    {
+        get { return automationDevices; }
+        set { automationDevices = value; }
+    }
 }
