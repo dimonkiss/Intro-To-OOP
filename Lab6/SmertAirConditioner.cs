@@ -4,7 +4,7 @@ public class SmartAirConditioner : Refrigerator
 {
     
     public SmartAirConditioner(EmbeddedMicroprocessor microprocessor, ElectricalEquipment electricalEquipment, RefrigeratorCabinet refrigeratorCabinet)
-        : base(microprocessor, electricalEquipment, refrigeratorCabinet)
+        : base(microprocessor, electricalEquipment, refrigeratorCabinet, 10,10)
     {
         // Додаткові налаштування для кондиціонера
     }

@@ -1,5 +1,19 @@
 ﻿namespace Lab6;
 
+// Делегат для обробки подій про закінчення продуктів
+public delegate void ProductRunOutEventHandler(object sender, ProductRunOutEventArgs e);
+
+// Аргументи події про закінчення продуктів
+public class ProductRunOutEventArgs : EventArgs
+{
+    public string ProductName { get; }
+
+    public ProductRunOutEventArgs(string productName)
+    {
+        ProductName = productName;
+    }
+}
+
 public class Refrigerator
 {
     private int maxTemperature;
@@ -42,6 +56,14 @@ public class Refrigerator
         get { return refrigeratorCabinet; }
         set { refrigeratorCabinet = value; }
     }
+    // Подія про закінчення продуктів
+    public event ProductRunOutEventHandler ProductRunOut;
+
+    // Метод для спровокування події про закінчення продуктів
+    protected virtual void OnProductRunOut(string productName)
+    {
+        ProductRunOut?.Invoke(this, new ProductRunOutEventArgs(productName));
+    }
     
     // Метод для додавання продукту в холодильник
     public void AddProduct(Product product)
@@ -62,6 +84,11 @@ public class Refrigerator
     public void RemoveProduct(Product product)
     {
         products.Remove(product);
+        // Якщо продукт був видалений і холодильник став пустим, спровокуємо подію про закінчення продуктів
+        if (products.Count == 0)
+        {
+            OnProductRunOut(product.Name);
+        }
     }
     
     // Інвентаризація продуктів у холодильнику
